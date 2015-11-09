@@ -126,11 +126,11 @@ public class MainActivity extends Activity {
         super.onConfigurationChanged(newConfig);
     }
     private class WebViewClients extends WebViewClient {
-//        @Override
-//        public void onReceivedSslError(WebView view, SslErrorHandler handler,SslError error) {
-//            super.onReceivedSslError(view, handler, error);
-//            handler.proceed();
-//        }
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler,SslError error) {
+            super.onReceivedSslError(view, handler, error);
+            handler.proceed();
+        }
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             //19버젼이후 체크 사항.
@@ -196,20 +196,20 @@ public class MainActivity extends Activity {
             ProgressArea.setVisibility(View.GONE);
         }
     }
-//    @Override
-//    public boolean onKeyDown(int KeyCode, KeyEvent event) {
-//        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-//            if (KeyCode == KeyEvent.KEYCODE_BACK) {
-//                if(mWebView.canGoBack()){
-//                    mWebView.goBack();
-//                }else{
-//                    backPressCloseHandler.onBackPressed();
-//                }
-//                return true;
-//            }
-//        }
-//        return super.onKeyDown(KeyCode, event);
-//    }
+    @Override
+    public boolean onKeyDown(int KeyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (KeyCode == KeyEvent.KEYCODE_BACK) {
+                if(mWebView.canGoBack()){
+                    mWebView.goBack();
+                }else{
+                    backPressCloseHandler.onBackPressed();
+                }
+                return true;
+            }
+        }
+        return super.onKeyDown(KeyCode, event);
+    }
 
 
 
